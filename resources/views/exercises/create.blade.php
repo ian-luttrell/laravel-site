@@ -36,10 +36,24 @@ Exercise Tracker: Record Exercise
 
 <br><br>
 
-<ul>
-@foreach ($userExercises as $exercise)
-	<li>{{ $exercise->distance }}</li>
-@endforeach
-</ul>
+<table>
+
+	<tr>
+		<th>Date</th>
+		<th>Distance (miles)</th>
+		<th>Hours</th>
+		<th>Minutes</th>
+	</tr>
+
+	@foreach ($userExercises as $exercise)
+		<tr>
+			<td>{{ $exercise->date }}</td>
+			<td>{{ $exercise->distance }}</td>
+			<td>{{ $exercise->hours }}</td>
+			<td>{{ $exercise->minutes }}</td>
+    	</tr>
+	@endforeach
+
+</table>
 
 @endsection
