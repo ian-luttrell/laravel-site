@@ -43,7 +43,7 @@ Exercise Tracker: Record Exercise
 
 	@else
 
-		You have not recorded any exercises yet.
+		You have no exercises to show. Add one with the button above.
 
 	@endif
 

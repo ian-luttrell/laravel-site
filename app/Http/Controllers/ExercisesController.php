@@ -45,4 +45,14 @@ class ExercisesController extends Controller
 		return view('exercises.index', ['userExercises' => $userExercises]);
 	}
 
+	
+	public function destroy(Run $exercise)
+	{
+		$exercise->delete();
+
+		$userExercises = DB::table('runs')->where('user_id', '=', 0)->get();
+
+		return view('exercises.index', ['userExercises' => $userExercises]);
+	}
+
 }

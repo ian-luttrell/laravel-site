@@ -5,10 +5,14 @@ Exercise Tracker: Show Exercise
 @endsection
 
 @section('content')
+	<form method="POST" action= {{ url('/exercises/delete/'.$exercise->id) }} >
+		@csrf
 
+		<button class="submit-button">Delete Exercise</button>
+	
+	</form>
 
-
-<br><br><br>
+	<br><br>
 
 	<table>
 
@@ -19,13 +23,13 @@ Exercise Tracker: Show Exercise
 			<th>Hours</th>
 			<th>Minutes</th>
 		</tr>
-			
+				
 		<tr>
-			<td><a class="table-link" href="/">{{ $exercise->date }}</a></td>
-			<td><a class="table-link" href="/">{{ $exercise->location }}</a></td>
-			<td><a class="table-link" href="/">{{ $exercise->distance }}</a></td>
-			<td><a class="table-link" href="/">{{ $exercise->hours }}</a></td>
-			<td><a class="table-link" href="/">{{ $exercise->minutes }}</a></td>
+			<td> {{ $exercise->date }} </td>
+			<td> {{ $exercise->location }} </td>
+			<td> {{ $exercise->distance }} </td>
+			<td> {{ $exercise->hours }} </td>
+			<td> {{ $exercise->minutes }} </td>
 		</tr>
 
 	</table>
