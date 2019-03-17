@@ -22,3 +22,4 @@ Route::post('/login', 'LoginController@store');
 Route::get('/exercises', 'ExercisesController@index');
 Route::post('/exercises', 'ExercisesController@store');
 Route::get('/exercises/create', 'ExercisesController@create');
+Route::get('/exercises/{exercise}', 'ExercisesController@show');
