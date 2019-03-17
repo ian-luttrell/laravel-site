@@ -25,3 +25,26 @@
     background-color: #4CAF50;
     color: white;
 }
+
+table, th, td
+{
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+th, td
+{
+	padding: 10px;
+	text-align: center;
+}
+
+th
+{
+	background-color: silver;
+}
+
+.table-link
+{
+	text-decoration: none;
+	color: inherit;
+}
