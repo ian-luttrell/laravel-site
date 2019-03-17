@@ -17,6 +17,7 @@ class CreateRunsTable extends Migration
             $table->increments('id');
 			$table->integer('user_id');
 			$table->string('date');
+			$table->string('location');
 			$table->float('distance');
 			$table->integer('hours');
 			$table->integer('minutes');

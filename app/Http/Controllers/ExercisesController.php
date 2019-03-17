@@ -20,6 +20,7 @@ class ExercisesController extends Controller
 		$run = new Run();
 		$run->user_id = 0;
 		$run->date = $request->input('date');
+		$run->location = $request->input('location');
 		$run->distance = $request->input('distance');
 		$run->hours = $request->input('hours');
 		$run->minutes = $request->input('minutes');
