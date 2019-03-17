@@ -8,11 +8,16 @@ use App\Run;
 
 class ExercisesController extends Controller
 {
-    public function create()
+	public function index()
 	{
 		$userExercises = DB::table('runs')->where('user_id', '=', 0)->get();
-
-		return view('exercises.create', ['userExercises' => $userExercises]);
+		
+		return view('exercises.index', ['userExercises' => $userExercises]);
+	}
+	
+    public function create()
+	{
+		return view('exercises.create', []);
 	}
 
 	public function store(Request $request)
@@ -28,6 +33,6 @@ class ExercisesController extends Controller
 
 		$userExercises = DB::table('runs')->where('user_id', '=', 0)->get();
 
-		return view('exercises.submitted', ['userExercises' => $userExercises]);
+		return view('exercises.index', ['userExercises' => $userExercises]);
 	}
 }

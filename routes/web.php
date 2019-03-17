@@ -19,5 +19,6 @@ Route::post('/create-account', 'AccountsController@store');
 Route::get('/login', 'LoginController@create');
 Route::post('/login', 'LoginController@store');
 
-Route::get('/record-exercise', 'ExercisesController@create');
-Route::post('/record-exercise', 'ExercisesController@store');
+Route::get('/exercises', 'ExercisesController@index');
+Route::post('/exercises', 'ExercisesController@store');
+Route::get('/exercises/create', 'ExercisesController@create');

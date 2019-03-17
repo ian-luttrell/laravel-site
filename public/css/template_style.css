@@ -48,3 +48,26 @@ th
 	text-decoration: none;
 	color: inherit;
 }
+
+.plain-link
+{
+	text-decoration: none;
+	color: inherit;
+}
+
+.link-button
+{
+	border: 1px solid black;
+	border-radius: 10px;
+	padding: 10px;
+	background-color: silver;
+}
+
+.submit-button
+{
+	border: 1px solid black;
+	border-radius: 10px;
+	padding: 10px;
+	width: 100px;
+	background-color: silver;
+}

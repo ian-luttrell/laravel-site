@@ -10,8 +10,8 @@ window.addEventListener('load', function() {
 			case '/login':
 				anchor = document.getElementById('login-link');
 				break;
-			case '/record-exercise':
-				anchor = document.getElementById('record-exercise-link');
+			case '/exercises':
+				anchor = document.getElementById('exercises-link');
 		}
 		anchor.style.backgroundColor = "green";
 	}
