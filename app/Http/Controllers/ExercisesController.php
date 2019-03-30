@@ -107,9 +107,7 @@ class ExercisesController extends Controller
 		$run->minutes = $request->input('minutes');
 		$run->save();
 
-		$userExercises = DB::table('runs')->where('user_id', '=', 0)->get();
-
-		return view('exercises.index', ['userExercises' => $userExercises]);
+		return $this->index();
 	}
 
 	
@@ -119,7 +117,7 @@ class ExercisesController extends Controller
 
 		$userExercises = DB::table('runs')->where('user_id', '=', 0)->get();
 
-		return view('exercises.index', ['userExercises' => $userExercises]);
+		return $this->index();
 	}
 
 }
