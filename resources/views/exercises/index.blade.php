@@ -25,16 +25,36 @@ Exercise Tracker: Record Exercise
 				<th>Distance (miles)</th>
 				<th>Hours</th>
 				<th>Minutes</th>
+				<th>Min / Mile</th>
+				<th>Miles / Hour</th>
 			</tr>
 
 			@foreach ($userExercises as $exercise)
 			
 				<tr>
-					<td><a class="table-link" href= {{ url('/exercises/'.$exercise->id) }} > {{ $exercise->date }} </a></td>
-					<td><a class="table-link" href= {{ url('/exercises/'.$exercise->id) }} > {{ $exercise->location }} </a></td>
-					<td><a class="table-link" href= {{ url('/exercises/'.$exercise->id) }} > {{ $exercise->distance }} </a></td>
-					<td><a class="table-link" href= {{ url('/exercises/'.$exercise->id) }} > {{ $exercise->hours }} </a></td>
-					<td><a class="table-link" href= {{ url('/exercises/'.$exercise->id) }} > {{ $exercise->minutes }} </a></td>
+					<td><a class="table-link" href= {{ url('/exercises/'.$exercise->id) }} >
+						{{ $exercise->date }} </a></td>
+					<td><a class="table-link" href= {{ url('/exercises/'.$exercise->id) }} >
+						{{ $exercise->location }} </a></td>
+					<td><a class="table-link" href= {{ url('/exercises/'.$exercise->id) }} >
+						{{ $exercise->distance }} </a></td>
+					<td><a class="table-link" href= {{ url('/exercises/'.$exercise->id) }} >
+						{{ $exercise->hours }} </a></td>
+					<td><a class="table-link" href= {{ url('/exercises/'.$exercise->id) }} >
+						{{ $exercise->minutes }} </a></td>
+					<td><a class="table-link" href= {{ url('/exercises/'.$exercise->id) }} >
+						{{ strval((int) ( ($exercise->hours * 60 + $exercise->minutes) / $exercise->distance ))
+							. ":" .
+						   strval( number_format (
+								  60 * (
+									      ($exercise->hours * 60 + $exercise->minutes) / $exercise->distance
+									      - (int) ( ($exercise->hours * 60 + $exercise->minutes) / $exercise->distance )
+									   )
+								  , 0)
+								 )
+						}} </a></td>
+					<td><a class="table-link" href= {{ url('/exercises/'.$exercise->id) }} >
+						{{ number_format($exercise->distance / ( $exercise->hours + $exercise->minutes / 60), 1) }} </a></td>
 				</tr>
 
 			@endforeach

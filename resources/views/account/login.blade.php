@@ -13,6 +13,6 @@ Log in here.
 	<br>
 	Password <input type="password" name="password" required>
 	<br><br>
-	<button type="submit">Log In</button>
+	<button class="submit-button" type="submit">Log In</button>
 </form>
 @endsection

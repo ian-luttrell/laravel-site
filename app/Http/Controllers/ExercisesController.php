@@ -31,6 +31,14 @@ class ExercisesController extends Controller
 
 	public function store(Request $request)
 	{
+		request()->validate([
+					'date' => ['date', 'required'],
+					'location' => ['min:5', 'required'],
+					'distance' => ['numeric', 'min:0', 'required'],
+					'hours' => ['integer', 'min:0', 'required'],
+					'minutes' => ['integer', 'min:0', 'required']
+		]);
+
 		$run = new Run();
 		$run->user_id = 0;
 		$run->date = $request->input('date');
