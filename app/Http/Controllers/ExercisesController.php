@@ -9,11 +9,70 @@ use App\Run;
 class ExercisesController extends Controller
 {
 
+	private static function get_mpm($hours, $minutes, $miles)
+	{
+		$totalMinutes = $hours * 60 + $minutes;
+		
+		$minPerMile = $totalMinutes / $miles;
+
+		return $minPerMile;
+	}
+
+
+	private static function format_mpm($minPerMile)
+	{
+		$minutes = (int)$minPerMile;
+
+		$seconds = 60 * ($minPerMile - $minutes);
+
+		if ( $seconds < 10 ) {
+			$seconds = '0' . number_format($seconds, 0);
+		} else {
+			$seconds = number_format($seconds, 0);
+		}
+		
+		return number_format($minutes, 0) . ':' . $seconds;
+	}
+
+
+	private static function get_mph($hours, $minutes, $miles)
+	{
+		return $miles / ( $hours + ($minutes / 60) );
+	}
+
+
+
 	public function index()
 	{
-		$userExercises = DB::table('runs')->where('user_id', '=', 0)->get();
+		$userExercises = DB::table('runs')->where('user_id', '=', 0)->get()->toArray();
 
-		return view('exercises.index', ['userExercises' => $userExercises]);
+		$exerciseInfo = [
+			
+			'exercises' => $userExercises,
+
+			'minPerMile' => array_map(function($arr) {
+									return static::format_mpm(
+												static::get_mpm(
+													$arr->hours,
+													$arr->minutes,
+													$arr->distance
+													   )
+													 );
+								}, $userExercises),
+
+			'milesPerHour' => array_map(function($arr) {
+									return number_format(
+												static::get_mph(
+													$arr->hours,
+													$arr->minutes,
+													$arr->distance
+												  ), 2);
+								}, $userExercises)
+		
+		];
+
+
+		return view('exercises.index', ['exerciseInfo' => $exerciseInfo]);
 	}
 
 

@@ -15,7 +15,7 @@ Exercise Tracker: Record Exercise
 
 	<br><br><br>
 
-	@if ($userExercises->count() > 0)
+	@if ( sizeof($exerciseInfo['exercises']) > 0 )
 
 		<table>
 
@@ -29,35 +29,26 @@ Exercise Tracker: Record Exercise
 				<th>Miles / Hour</th>
 			</tr>
 
-			@foreach ($userExercises as $exercise)
+			@for ($i = 0; $i < sizeof($exerciseInfo['exercises']); $i++)
 			
 				<tr>
-					<td><a class="table-link" href= {{ url('/exercises/'.$exercise->id) }} >
-						{{ $exercise->date }} </a></td>
-					<td><a class="table-link" href= {{ url('/exercises/'.$exercise->id) }} >
-						{{ $exercise->location }} </a></td>
-					<td><a class="table-link" href= {{ url('/exercises/'.$exercise->id) }} >
-						{{ $exercise->distance }} </a></td>
-					<td><a class="table-link" href= {{ url('/exercises/'.$exercise->id) }} >
-						{{ $exercise->hours }} </a></td>
-					<td><a class="table-link" href= {{ url('/exercises/'.$exercise->id) }} >
-						{{ $exercise->minutes }} </a></td>
-					<td><a class="table-link" href= {{ url('/exercises/'.$exercise->id) }} >
-						{{ strval((int) ( ($exercise->hours * 60 + $exercise->minutes) / $exercise->distance ))
-							. ":" .
-						   strval( number_format (
-								  60 * (
-									      ($exercise->hours * 60 + $exercise->minutes) / $exercise->distance
-									      - (int) ( ($exercise->hours * 60 + $exercise->minutes) / $exercise->distance )
-									   )
-								  , 0)
-								 )
-						}} </a></td>
-					<td><a class="table-link" href= {{ url('/exercises/'.$exercise->id) }} >
-						{{ number_format($exercise->distance / ( $exercise->hours + $exercise->minutes / 60), 1) }} </a></td>
+					<td><a class="table-link" href= {{ url('/exercises/'. $exerciseInfo['exercises'][$i]->id) }} >
+						{{ $exerciseInfo['exercises'][$i]->date }} </a></td>
+					<td><a class="table-link" href= {{ url('/exercises/'. $exerciseInfo['exercises'][$i]->id) }} >
+						{{ $exerciseInfo['exercises'][$i]->location }} </a></td>
+					<td><a class="table-link" href= {{ url('/exercises/'. $exerciseInfo['exercises'][$i]->id) }} >
+						{{ $exerciseInfo['exercises'][$i]->distance }} </a></td>
+					<td><a class="table-link" href= {{ url('/exercises/'. $exerciseInfo['exercises'][$i]->id) }} >
+						{{ $exerciseInfo['exercises'][$i]->hours }} </a></td>
+					<td><a class="table-link" href= {{ url('/exercises/'. $exerciseInfo['exercises'][$i]->id) }} >
+						{{ $exerciseInfo['exercises'][$i]->minutes }} </a></td>
+					<td><a class="table-link" href= {{ url('/exercises/'. $exerciseInfo['exercises'][$i]->id) }} >
+						{{ $exerciseInfo['minPerMile'][$i] }} </a></td>
+					<td><a class="table-link" href= {{ url('/exercises/'. $exerciseInfo['exercises'][$i]->id) }} >
+						{{ $exerciseInfo['milesPerHour'][$i] }} </a></td>
 				</tr>
 
-			@endforeach
+			@endfor
 
 		</table>
 
