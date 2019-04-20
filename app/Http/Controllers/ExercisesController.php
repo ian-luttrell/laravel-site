@@ -44,7 +44,11 @@ class ExercisesController extends Controller
 
 	public function index()
 	{
-		$userExercises = DB::table('runs')->where('user_id', '=', 0)->get()->toArray();
+		$userExercises = DB::table('runs')
+							->where('user_id', '=', 0)
+							->orderBy('id', 'desc')							
+							->get()							
+							->toArray();
 
 		$exerciseInfo = [
 			
